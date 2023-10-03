@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import NewsFeed from "../Components/Pages/Home/NewsFeed";
 import About from "../Pages/About/About";
 import Career from "../Pages/Career/Career";
 import Home from "../Pages/Home/Home";
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
          {
             path: "/",
             element: <Home />,
+            loader: () => fetch("/public/api/news.json"),
          },
          {
             path: "/about",
@@ -30,6 +32,17 @@ const router = createBrowserRouter([
          {
             path: "/register",
             element: <Register />,
+         },
+         {
+            path: "/category",
+            element: <Home />,
+            children: [
+               {
+                  path: "/category/:catId",
+                  element: <NewsFeed />,
+                  loader: () => fetch("/public/api/news.json"),
+               },
+            ],
          },
       ],
    },
