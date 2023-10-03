@@ -15,7 +15,6 @@ const router = createBrowserRouter([
          {
             path: "/",
             element: <Home />,
-            loader: () => fetch("/public/api/news.json"),
          },
          {
             path: "/about",
@@ -40,7 +39,6 @@ const router = createBrowserRouter([
                {
                   path: "/category/:catId",
                   element: <NewsFeed />,
-                  loader: () => fetch("/public/api/news.json"),
                },
             ],
          },

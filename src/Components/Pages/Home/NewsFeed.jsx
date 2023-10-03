@@ -1,12 +1,13 @@
-import { useLoaderData, useParams } from "react-router-dom";
+import { useContext } from "react";
+import { useParams } from "react-router-dom";
+import { NewsContext } from "../../../MyContext/NewsProvider";
 import NewsCard from "./NewsCard";
 
 const NewsFeed = () => {
    const { catId } = useParams();
-   const allNews = useLoaderData();
+   const allNews = useContext(NewsContext);
 
    const filteredNews = allNews.filter((news) => news.category_id === catId);
-   console.log(allNews);
    return (
       <div>
          <h2 className="text-lg font-semibold md:max-w-xl mx-auto">

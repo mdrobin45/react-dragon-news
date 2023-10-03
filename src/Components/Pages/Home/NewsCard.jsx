@@ -20,7 +20,7 @@ const NewsCard = ({ news }) => {
 
    return (
       <div className="my-6">
-         <div className=" bg-white mx-auto block border border-gray-200 rounded-lg shadow md:max-w-xl">
+         <div className=" bg-white w-full block border border-gray-200 rounded-lg shadow">
             <div className="flex p-4 bg-gray-100 justify-between items-center">
                <div className="flex items-center justify-between">
                   <img
@@ -83,7 +83,18 @@ const NewsCard = ({ news }) => {
                   </p>
                   <hr />
                   <div className="mt-3 flex items-center justify-between">
-                     <Rating name="read-only" value={ratingValue} readOnly />
+                     <div className="flex items-center justify-between">
+                        <Rating
+                           name="half-rating"
+                           value={ratingValue}
+                           precision={0.5}
+                           readOnly
+                        />
+                        <span className="text-secondary mt-1">
+                           {ratingValue}
+                        </span>
+                     </div>
+
                      <div className="flex items-center justify-end gap-2">
                         <svg
                            className="w-5 h-5 text-gray-800 dark:text-white"
