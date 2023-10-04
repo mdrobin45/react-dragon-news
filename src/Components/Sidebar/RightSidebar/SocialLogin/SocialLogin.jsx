@@ -1,10 +1,29 @@
+import { useContext } from "react";
+import { AuthContext } from "../../../../MyContext/AuthProvider";
+
 const SocialLogin = () => {
+   const { googleSignIn, gitHubSignIn } = useContext(AuthContext);
+
+   // handle google sign in
+   const handleGoogleSignIn = () => {
+      googleSignIn()
+         .then()
+         .catch((err) => console.log(err.message));
+   };
+
+   // handle google sign in
+   const handleGithubSignIn = () => {
+      gitHubSignIn()
+         .then()
+         .catch((err) => console.log(err.message));
+   };
    return (
       <>
          <h2 className="text-lg text-primary font-semibold leading-medium">
             Login With
          </h2>
          <button
+            onClick={handleGoogleSignIn}
             type="button"
             className="text-white mt-6 w-full bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2">
             <svg
@@ -22,6 +41,7 @@ const SocialLogin = () => {
             Sign in with Google
          </button>
          <button
+            onClick={handleGithubSignIn}
             type="button"
             className="text-white w-full bg-[#24292F] hover:bg-[#24292F]/90 focus:ring-4 focus:outline-none focus:ring-[#24292F]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500 dark:hover:bg-[#050708]/30 mr-2 mb-2">
             <svg
