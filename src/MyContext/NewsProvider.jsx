@@ -7,7 +7,7 @@ const NewsProvider = ({ children }) => {
 
    // Fetch news
    useEffect(() => {
-      fetch("/public/api/news.json")
+      fetch("https://mdrobin45.github.io/api/dragonNews/news.json")
          .then((res) => res.json())
          .then((data) => setNews(data));
    }, []);

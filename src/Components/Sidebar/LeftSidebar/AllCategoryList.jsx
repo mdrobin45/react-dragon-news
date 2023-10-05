@@ -6,7 +6,7 @@ const AllCategoryList = () => {
 
    // Fetch category
    useEffect(() => {
-      fetch("/public/api/categories.json")
+      fetch("https://mdrobin45.github.io/api/dragonNews/categories.json")
          .then((res) => res.json())
          .then((data) => setCategories(data));
    }, []);
