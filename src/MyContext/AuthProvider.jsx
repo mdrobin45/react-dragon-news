@@ -14,7 +14,7 @@ import auth from "../Firebase/firebase.config";
 
 export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
-   const [userInfo, setUserInfo] = useState({});
+   const [userInfo, setUserInfo] = useState(null);
    const googleAuthProvider = new GoogleAuthProvider();
    const githubAuthProvider = new GithubAuthProvider();
 
@@ -55,12 +55,16 @@ const AuthProvider = ({ children }) => {
 
    useEffect(() => {
       // Get user details
-      onAuthStateChanged(auth, (user) => {
+      const unSubscribe = onAuthStateChanged(auth, (user) => {
          if (user) {
             setUserInfo(user);
          }
+         return () => {
+            unSubscribe();
+         };
       });
    }, []);
+   console.log(userInfo);
 
    const authInfo = {
       userInfo,

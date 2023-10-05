@@ -8,7 +8,6 @@ import Topbar from "../Layouts/Topbar/Topbar";
 
 const Root = () => {
    const { pathname } = useLocation();
-   console.log(pathname);
    return (
       <div className="container">
          <Topbar />

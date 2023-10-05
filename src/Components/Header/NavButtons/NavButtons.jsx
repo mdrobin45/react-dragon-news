@@ -1,13 +1,32 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../MyContext/AuthProvider";
 
 const NavButtons = () => {
    const [expandProfile, setExpandProfile] = useState(false);
    const { userInfo, sendVerificationLink, logOut } = useContext(AuthContext);
+   const [user, setUser] = useState({
+      name: "",
+      email: "",
+      photoURL: "",
+      emailVerified: "",
+   });
+
+   useEffect(() => {
+      if (userInfo) {
+         const { displayName, email, photoURL, emailVerified } = userInfo;
+         setUser((prevValue) => ({
+            ...prevValue,
+            name: displayName,
+            email: email,
+            photoURL: photoURL,
+            emailVerified: emailVerified,
+         }));
+      }
+   }, [userInfo]);
+
    const navigate = useNavigate();
 
-   const { email, photoURL, displayName, emailVerified } = userInfo;
    // Toggle user profile dropdown
    const handleProfileExpand = () => {
       setExpandProfile(!expandProfile);
@@ -23,18 +42,21 @@ const NavButtons = () => {
    // Logout
    const handleLogOut = () => {
       logOut().then(() => {
-         alert("Sign out");
          navigate("/");
       });
    };
    return (
       <div className="relative w-1/3 flex items-center justify-end">
-         {photoURL ? (
+         {user.email ? (
             <img
                onClick={handleProfileExpand}
                type="button"
                className="w-10 h-10 rounded-full border cursor-pointer"
-               src={photoURL ? photoURL : "https://i.ibb.co/238dYyx/user.png"}
+               src={
+                  user.photoURL
+                     ? user.photoURL
+                     : "https://i.ibb.co/238dYyx/user.png"
+               }
                alt="User"
             />
          ) : (
@@ -50,11 +72,11 @@ const NavButtons = () => {
                !expandProfile ? "hidden" : ""
             } absolute top-12 right-0 bg-primary divide-y divide-gray-500 rounded-lg shadow w-44`}>
             <div className="px-4 py-3 text-sm text-white font-normal">
-               <div>{displayName ? displayName : "No name"}</div>
+               <div>{user.name ? user.name : "No name"}</div>
                <div className=" font-normal truncate">
-                  {email ? email : "email not found"}
+                  {user.email ? user.email : "email not found"}
                </div>
-               {emailVerified ? (
+               {user.emailVerified ? (
                   <span className="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
                      Verified
                   </span>

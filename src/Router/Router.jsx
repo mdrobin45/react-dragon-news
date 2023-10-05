@@ -7,6 +7,7 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import SingleNews from "../Pages/SingleNews/SingleNews";
 import Root from "../Root/Root";
+import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
    {
@@ -35,11 +36,19 @@ const router = createBrowserRouter([
          },
          {
             path: "/news",
-            element: <Home />,
+            element: (
+               <PrivateRoutes>
+                  <Home />
+               </PrivateRoutes>
+            ),
             children: [
                {
                   path: "/news/:newsId",
-                  element: <SingleNews />,
+                  element: (
+                     <PrivateRoutes>
+                        <SingleNews />
+                     </PrivateRoutes>
+                  ),
                },
             ],
          },
