@@ -56,15 +56,12 @@ const AuthProvider = ({ children }) => {
    useEffect(() => {
       // Get user details
       const unSubscribe = onAuthStateChanged(auth, (user) => {
-         if (user) {
-            setUserInfo(user);
-         }
-         return () => {
-            unSubscribe();
-         };
+         setUserInfo(user);
       });
+      return () => {
+         unSubscribe();
+      };
    }, []);
-   console.log(userInfo);
 
    const authInfo = {
       userInfo,
