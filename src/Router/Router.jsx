@@ -5,6 +5,7 @@ import Career from "../Pages/Career/Career";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import SingleNews from "../Pages/SingleNews/SingleNews";
 import Root from "../Root/Root";
 
 const router = createBrowserRouter([
@@ -31,6 +32,16 @@ const router = createBrowserRouter([
          {
             path: "/register",
             element: <Register />,
+         },
+         {
+            path: "/news",
+            element: <Home />,
+            children: [
+               {
+                  path: "/news/:newsId",
+                  element: <SingleNews />,
+               },
+            ],
          },
          {
             path: "/category",

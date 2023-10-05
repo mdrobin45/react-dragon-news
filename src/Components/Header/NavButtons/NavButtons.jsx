@@ -26,7 +26,7 @@ const NavButtons = () => {
       });
    };
    return (
-      <div className="relative">
+      <div className="relative w-1/3 flex items-center justify-end">
          {photoURL ? (
             <img
                onClick={handleProfileExpand}

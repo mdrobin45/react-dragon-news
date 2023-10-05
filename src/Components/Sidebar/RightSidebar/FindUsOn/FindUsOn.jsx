@@ -1,8 +1,8 @@
 const FindUsOn = () => {
    return (
-      <div>
+      <div className="mt-6">
          <h2 className="text-lg text-primary font-semibold leading-medium">
-            All Category
+            Find Us On
          </h2>
          <ul className="mt-3">
             <li className="w-full">

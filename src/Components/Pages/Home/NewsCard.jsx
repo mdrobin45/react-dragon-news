@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const NewsCard = ({ news }) => {
    const [publishDate, setPublishDate] = useState([]);
    const [ratingValue, setRatingValue] = useState(0);
-   const { author, title, image_url, details, total_view, rating } = news;
+   const { author, title, image_url, details, total_view, rating, _id } = news;
 
    useEffect(() => {
       if (author && author.published_date) {
@@ -77,7 +77,7 @@ const NewsCard = ({ news }) => {
                <div className="flex flex-col justify-between p-4 leading-normal">
                   <p className="mb-3 font-normal text-sm text-secondary">
                      {details}...{" "}
-                     <Link to="/" className="text-blue-500">
+                     <Link to={`/news/${_id}`} className="text-blue-500">
                         Read More
                      </Link>
                   </p>
