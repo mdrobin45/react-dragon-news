@@ -25,7 +25,7 @@ const Login = () => {
          .then((result) => {
             if (result.user) {
                setDisplayErrorMessage("");
-               if (!state === null) {
+               if (state !== null) {
                   navigate(state.prevUrl);
                } else {
                   navigate("/");
