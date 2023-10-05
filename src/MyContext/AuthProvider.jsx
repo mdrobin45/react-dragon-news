@@ -7,6 +7,7 @@ import {
    signInWithEmailAndPassword,
    signInWithPopup,
    signOut,
+   updateProfile,
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../Firebase/firebase.config";
@@ -30,6 +31,11 @@ const AuthProvider = ({ children }) => {
    // Send verification email
    const sendVerificationLink = () => {
       return sendEmailVerification(auth.currentUser);
+   };
+
+   // Update profile details
+   const profileUpdate = (profileInfo) => {
+      return updateProfile(auth.currentUser, profileInfo);
    };
 
    // Google sign In
@@ -58,6 +64,7 @@ const AuthProvider = ({ children }) => {
 
    const authInfo = {
       userInfo,
+      profileUpdate,
       logOut,
       googleSignIn,
       gitHubSignIn,

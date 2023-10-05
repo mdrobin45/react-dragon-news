@@ -1,10 +1,11 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../MyContext/AuthProvider";
 
 const NavButtons = () => {
    const [expandProfile, setExpandProfile] = useState(false);
    const { userInfo, sendVerificationLink, logOut } = useContext(AuthContext);
+   const navigate = useNavigate();
 
    const { email, photoURL, displayName, emailVerified } = userInfo;
    // Toggle user profile dropdown
@@ -22,7 +23,8 @@ const NavButtons = () => {
    // Logout
    const handleLogOut = () => {
       logOut().then(() => {
-         alert("You are logged out!");
+         alert("Sign out");
+         navigate("/");
       });
    };
    return (

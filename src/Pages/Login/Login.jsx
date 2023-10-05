@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import DisplayError from "../../Components/Pages/Login/FormFields/DisplayError";
 import Email from "../../Components/Pages/Login/FormFields/Email";
 import Password from "../../Components/Pages/Login/FormFields/Password";
@@ -11,6 +11,7 @@ import { AuthContext } from "../../MyContext/AuthProvider";
 const Login = () => {
    const [displayErrorMessage, setDisplayErrorMessage] = useState();
    const { emailPasswordSignIn } = useContext(AuthContext);
+   const navigate = useNavigate();
 
    // Form submit
    const handleFormSubmit = (e) => {
@@ -19,7 +20,12 @@ const Login = () => {
       const password = e.target.password.value;
 
       emailPasswordSignIn(email, password)
-         .then()
+         .then((result) => {
+            if (result.user) {
+               setDisplayErrorMessage("");
+               navigate("/");
+            }
+         })
          .catch((err) => setDisplayErrorMessage(err.message));
    };
 
