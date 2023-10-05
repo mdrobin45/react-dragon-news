@@ -5,7 +5,6 @@ import { NewsContext } from "../../MyContext/NewsProvider";
 const SingleNews = () => {
    const allNews = useContext(NewsContext);
    const { newsId } = useParams();
-
    const singleNews = allNews.find((news) => news._id === newsId);
    const { image_url, title, details, category_id } = singleNews;
    return (
